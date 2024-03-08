@@ -1,0 +1,37 @@
+app.get('/create',async (req,res)=>{
+    let create=await cadastro.create({ 
+        codProduto: "310042443", 
+        descricao: "TELHA DE 244 X 050 X 4 CRFP",
+        createAt: new Date(),
+        updateAt: new Date()
+    });
+    res.send('Castro realizado com sucesso')
+});
+
+app.get('/read', async (req,res)=>{
+    let read=await cadastro.findAll({options:{
+        raw:true
+    }})
+    console.log(read);
+});
+app.get('/update', async (req,res)=> {
+    let update=await cadastro.findByPk(23).then((Response)=>{
+        Response.descricao='Teste';
+        Response.save();
+    });
+});
+app.get('/delete',async (req,res)=> {
+    cadastro.destroy({
+        where: {id:23}
+    })
+})
+
+
+await inputdado.create({
+            produtoID: req.body.cadastroID,
+            qtde: req.body.qtede,
+            local: req.body.local,
+            status: req.body.status,
+            createdAt: new Date(),
+            updateAT: new Date()
+        });
