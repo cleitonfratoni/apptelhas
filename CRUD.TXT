@@ -34,4 +34,4 @@ await inputdado.create({
             status: req.body.status,
             createdAt: new Date(),
             updateAT: new Date()
-        });
+        }); 
